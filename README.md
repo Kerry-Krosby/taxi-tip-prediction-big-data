@@ -70,7 +70,7 @@ gcloud dataproc clusters create cluster-20e9 \
 
 
 ## Model Results
-## | Metric| Score |
+## |Metric|Score|
 |---|---|
    | Accuracy  | 90.5% |
    | Precision | 81.9% |
