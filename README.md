@@ -1,41 +1,101 @@
 # taxi-tip-prediction-big-data
-Predicting passenger tips using NYC HVFHS data
-# Taxi Tip Prediction (Big Data Project)
+# Predicting passenger tips using NYC HVFHS data
 
 ## Project Overview
-This project uses big data techniques to analyze taxi trip data and predict tip amounts. 
-The goal is to understand patterns in customer tipping behavior and build a predictive model using data analytics and machine learning techniques.
+This project builds an end-to-end big data ML pipeline to predict tipping behavior in NYC ride-hail trips. Using the NYC TLC High-Volume For-Hire Vehicle Service (HVFHS) dataset — **over 240 million trips across all 12 months of 2024** — the goal is to classify whether a passenger tip exceeds 10% of the base fare.
 
----
+The pipeline spans cloud storage, distributed processing, feature engineering, and binary classification modeling, all built on Google Cloud Platform.
 
 ## Objective
-- Analyze taxi trip datasets
-- Identify key factors that influence tip amounts
-- Build a predictive model to estimate tips
-- Apply big data tools and techniques for scalable analysis
+The goal of this project is to predict whether a taxi tip is “good” (greater than 10% of the base fare) using trip and fare-related features. This is framed as a binary classification problem.
 
----
+## Business Value
+Understanding what drives higher tips can help:
+- Drivers optimize pickup times and routes
+- Platforms improve driver earnings strategies
+- Improve customer satisfaction and service efficiency
+- Support revenue optimization for ride services
 
-## Project Structure
+
+## Approach
+A logistic regression model is used to classify trips based on whether they result in a good tip. The analysis includes:
 - Data cleaning and preprocessing
 - Exploratory data analysis (EDA)
 - Feature engineering
 - Model training and evaluation
-- Prediction results
 
----
+## Dataset
+NYC TLC High-Volume For-Hire Vehicle Service (HVFHS) Trip Data  
+Includes:
+- Trip duration
+- Fare amount
+- Pickup and drop-off locations
+- Service and dispatch details
 
-## Technologies Used
-- Python
-- Pandas / NumPy
-- PySpark (if applicable)
-- Scikit-learn
-- Jupyter Notebook
-- Matplotlib / Seaborn
+## Pipeline Architecture
 
----
+## Stage                 |Tool 
+| Data Source            | NYC TLC HVFHS (Parquet, Jan–Dec 2024) |
+| Cloud Storage          | Google Cloud Storage (GCS) |
+| Distributed Processing | Google Cloud Dataproc |
+| Modeling               | PySpark MLlib (Logistic Regression) |
 
-##How to Run This Project
+
+## Cluster Setup
+
+```bash
+gcloud dataproc clusters create cluster-20e9 \
+  --enable-component-gateway \
+  --region us-central1 \
+  --single-node \
+  --master-machine-type n4-standard-8 \
+  --master-boot-disk-type hyperdisk-balanced \
+  --master-boot-disk-size 100 \
+  --image-version 2.2-debian12 \
+  --optional-components JUPYTER \
+  --max-idle 3600s \
+  --project kc-skypixel
+```
+## Features & Target
+
+**Features:**
+- `trip_miles`, `trip_duration`, `trip_weekend`, `pickup_hour`
+- Fare-tier segments:
+- `PULocationID`, `DOLocationID` (encoded across 262 TLC Taxi Zones)
+
+**Target:** `tip_bucket` → `1` if tip > 10% of base fare, else `0`
+
+**Train/test split:** 70/30
+
+
+## Model Results
+## | Metric    | Score |
+   | Accuracy  | 90.5% |
+   | Precision | 81.9% |
+   | Recall    | 90.5% |
+   | F1 Score  | 86.0% |
+   | AUC       | 0.500 |
+   | Cross-Val AUC | ~66.5% |
+> **Note:** High accuracy with low AUC reflects class imbalance — a known limitation and area for future work.
+
+
+## Key Findings
+
+- **Time-of-day** (5–7 PM peak) and **fare-tier segmentation** were the strongest predictors of tipping
+- **Pickup/drop-off location** significantly influenced tip likelihood
+- Domain-driven feature engineering had more impact than model complexity
+- Class imbalance should be addressed in future iterations (SMOTE, class weighting, or tree-based models)
+
+
+
+## Business Impact
+
+- **Drivers** can optimize earnings by targeting high-tip time windows and zones
+- **Platforms** can refine dynamic pricing and incentive design
+- **Service teams** gain a data-backed understanding of what drives passenger generosity
+
+
+## How to Run This Project
 
 ```bash
 git clone https://github.com/Kerry-Krosby/taxi-tip-prediction-big-data.git
