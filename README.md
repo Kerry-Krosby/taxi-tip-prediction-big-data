@@ -109,4 +109,4 @@ gcloud dataproc clusters create cluster-20e9 \
 
 ## Full Report
 See detailed analysis with visuals and findings:
-[Download Full Report](docs/)
+[Download Full Report](docs/NYC_Taxi_Tip_Prediction_GCP_Project_.pdf)
