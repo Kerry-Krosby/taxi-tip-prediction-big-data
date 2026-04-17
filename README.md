@@ -96,7 +96,6 @@ gcloud dataproc clusters create cluster-20e9 \
 
 
 ## How to Run This Project
-## 🚀 How to Run This Project
 
 1. Clone the repository
 2. Install dependencies:
