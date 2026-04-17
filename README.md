@@ -109,4 +109,4 @@ gcloud dataproc clusters create cluster-20e9 \
 
 ## Full Report
 A detailed end-to-end report including data acquisition, EDA, feature engineering, and machine learning results is available below:
-[View Full Report (PDF)](docs/docs/NYC_Taxi_Tip_Prediction_GCP_Project_.pdf)
+[View Full Report (PDF)](docs/NYC_Taxi_Tip_Prediction_GCP_Project_.pdf) 
