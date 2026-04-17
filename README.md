@@ -107,3 +107,6 @@ gcloud dataproc clusters create cluster-20e9 \
 4. Run notebooks in order:
    01 → 02 → 03 → 04
 
+## Full Report
+See detailed analysis with visuals and findings:
+[Download Full Report](docs/)
