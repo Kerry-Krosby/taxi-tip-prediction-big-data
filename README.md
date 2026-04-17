@@ -35,6 +35,7 @@ Includes:
 ## Pipeline Architecture
 
 ## Stage                 |Tool 
+|---|---|
 | Data Source            | NYC TLC HVFHS (Parquet, Jan–Dec 2024) |
 | Cloud Storage          | Google Cloud Storage (GCS) |
 | Distributed Processing | Google Cloud Dataproc |
@@ -70,6 +71,7 @@ gcloud dataproc clusters create cluster-20e9 \
 
 ## Model Results
 ## | Metric    | Score |
+|---|---|
    | Accuracy  | 90.5% |
    | Precision | 81.9% |
    | Recall    | 90.5% |
