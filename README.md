@@ -96,8 +96,15 @@ gcloud dataproc clusters create cluster-20e9 \
 
 
 ## How to Run This Project
+## 🚀 How to Run This Project
 
-```bash
-git clone https://github.com/Kerry-Krosby/taxi-tip-prediction-big-data.git
-cd taxi-tip-prediction-big-data
-pip install -r requirements.txt
+1. Clone the repository
+2. Install dependencies:
+   pip install -r requirements.txt
+
+3. Open Jupyter Notebook:
+   jupyter notebook
+
+4. Run notebooks in order:
+   01 → 02 → 03 → 04
+
