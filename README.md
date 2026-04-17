@@ -34,13 +34,12 @@ Includes:
 
 ## Pipeline Architecture
 
-## |Stage|Tool|
-|---|---|
-| Data Source            | NYC TLC HVFHS (Parquet, Jan–Dec 2024) |
-| Cloud Storage          | Google Cloud Storage (GCS) |
-| Distributed Processing | Google Cloud Dataproc |
-| Modeling               | PySpark MLlib (Logistic Regression) |
-
+| Stage                  | Tool                                        |
+|------------------------|---------------------------------------------|
+| Data Source            | NYC TLC HVFHS (Parquet, Jan–Dec 2024)       |
+| Cloud Storage          | Google Cloud Storage (GCS)                  |
+| Distributed Processing | Google Cloud Dataproc                       |
+| Modeling               | PySpark MLlib (Logistic Regression)         |
 
 ## Cluster Setup
 
@@ -70,14 +69,14 @@ gcloud dataproc clusters create cluster-20e9 \
 
 
 ## Model Results
-## |Metric|Score|
-|---|---|
-   | Accuracy  | 90.5% |
-   | Precision | 81.9% |
-   | Recall    | 90.5% |
-   | F1 Score  | 86.0% |
-   | AUC       | 0.500 |
-   | Cross-Val AUC | ~66.5% |
+| Metric        | Score  |
+|---------------|--------|
+| Accuracy      | 90.5%  |
+| Precision     | 81.9%  |
+| Recall        | 90.5%  |
+| F1 Score      | 86.0%  |
+| AUC           | 0.500  |
+| Cross-Val AUC | ~66.5% |
 > **Note:** High accuracy with low AUC reflects class imbalance — a known limitation and area for future work.
 
 
